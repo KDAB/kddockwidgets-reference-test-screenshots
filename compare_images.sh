@@ -15,8 +15,8 @@ if [[ -n $(git status --porcelain) ]]; then
     git add .
     git commit -m "Reference images from ${PR_URL}"
     git push --set-upstream origin "update/$PR_NUMBER" --force
-    UPDATE_URL=$(gh pr create -B main -H "update/$PR_NUMBER" -t "Update reference images for PR #$PR_NUMBER" -b "Update reference images for ${PR_URL}" | grep https)
+    # UPDATE_URL=$(gh pr create -B main -H "update/$PR_NUMBER" -t "Update reference images for PR #$PR_NUMBER" -b "Update reference images for ${PR_URL}" | grep https)
 
     cd ../../ # Back to KDDockWidgets repo
-    gh pr comment $PR_NUMBER -b "Reference images update PR created: ${UPDATE_URL}. Review carefully, merge or discard it."
+    gh pr comment $PR_NUMBER -b "Reference images commit created. Review carefully, merge or discard it: https://github.com/KDAB/kddockwidgets-reference-test-screenshots/compare/main...update/$PR_NUMBER"
 fi
